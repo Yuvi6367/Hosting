@@ -1,0 +1,1329 @@
+:root {
+  --main-font: "Ysabeau SC", serif;
+  --secondary-font: "Josefin Sans", serif;
+}
+::-webkit-scrollbar{
+  width: 0;
+}
+.Content01 {
+  position: fixed; /* Keeps the div fixed in the viewport */
+  top: 36vh; /* Position at the top of the viewport */
+  left: 0; /* Position at the left of the viewport */
+  right: 0; /* Stretch to the right of the viewport */
+  bottom: 0; /* Stretch to the bottom of the viewport */
+  border: 2px solid #cccccc00; /* Optional: Border visibility */
+  background-color: #f9f9f900; /* Background for the parent */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0); /* Optional: Shadow */
+ /* Center content vertically */
+  height: 63vh; /* Adjust to the viewport height */
+}
+
+.content {
+  font-family: var(--secondary-font);
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  margin: 10px; /* Optional: Auto margin for centering */
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 26%);
+  animation: fadeIn 0.5s ease-in-out;
+  overflow: auto; /* Enables scrolling inside the content */
+  max-height: calc(100% - 40px); /* Prevents overflowing outside the parent */
+}
+
+.add-labour-btn {
+  background-color: #325fb3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s ease-in-out, box-shadow 0.3s;
+}
+
+.add-labour-btn:hover {
+  background-color: #4c28a0;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(76, 40, 160, 0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Popup Overlay */
+
+
+/* Popup Form */
+/* Popup Container */
+.popup-form { 
+  position: fixed; /* Keeps the div fixed in the viewport */
+  left: 0; /* Position at the left of the viewport */
+  right: 0; /* Stretch to the right of the viewport */
+  background: rgba(0, 0, 0, 0.76);
+  display: none;
+  background: #ffffff;
+  border-radius: 15px;
+  width: auto;
+  max-height: auto; /* Adjusted to fit within 75% of the screen */
+  padding: 10px 16px;
+  box-shadow: 0 8px 20px rgb(0 0 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 12px; /* Reduced gap size to save space */
+  position: fixed;
+  bottom: -5px;
+  font-family: var(--main-font);
+  font-weight: 400;
+}
+
+/* Full-width Fields */
+.popup-form .full-width {
+  grid-column: span 2;
+}
+.full-width input{
+  font-family: var(--secondary-font);
+}
+/* Header */
+.popup-form h3 {
+  grid-column: span 2;
+  text-align: center;
+  font-size: 20px; /* Reduced font size */
+  font-weight: bold;
+  color: #6200ea;
+  margin-bottom: -150px; /* Reduced margin */
+}
+
+.popup-form hr {
+  grid-column: span 2;
+  border: none;
+  border-top: 1px solid #fffbfb; /* Thinner line */
+  margin-bottom: 12px; /* Reduced margin */
+}
+
+/* Input Fields */
+.popup-form input[type="text"],
+.popup-form input[type="number"],
+.popup-form input[type="date"],
+.popup-form select {
+  width: 100%;
+  padding: 10px; /* Reduced padding */
+  font-size: 14px; /* Reduced font size */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+/* On Focus */
+.popup-form input:focus,
+.popup-form select:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* Salary Type and Rate Per Day - 50% Each */
+.salary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 12px;
+}
+.salary-grid select{
+ font-family: var(--secondary-font);
+}
+
+/* Dropdown + Add Category Button */
+.dropdown-button {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Reduced gap */
+}
+
+.dropdown-button select {
+  flex: 1; /* Take up remaining space */
+  font-family: var(--secondary-font);
+}
+
+/* Add Category Button */
+.plus-button {
+  position: relative;
+  top: 18%;
+  width: 40px; /* Reduced size */
+  height: 40px;
+  background: linear-gradient(135deg, #6200ea, #3700b3);
+  color: white;
+  font-size: 18px; /* Reduced font size */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 15px rgba(98, 0, 234, 0.2);
+}
+
+.plus-button:hover {
+  background: linear-gradient(135deg, #3700b3, #6200ea);
+  transform: scale(1.1);
+}
+
+/* Create Labour Button */
+#createLabourBtn {
+  width: 100%;
+  background: linear-gradient(135deg, #4c28a0, #6200ea);
+  color: #ffffff;
+  font-size: 16px; /* Reduced font size */
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(76, 40, 160, 0.3);
+}
+
+#createLabourBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(76, 40, 160, 0.4);
+}
+
+/* Close Button */
+.popup-close {
+  position: absolute;
+  top: 1px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s ease;
+}
+
+.popup-close:hover {
+  color: #dc3545;
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Add Category Popup Styling */
+.popup-overlayCat {
+  display: none;
+  background: rgba(0, 0, 0, 0.5); /* Dimmed background */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 22;
+}
+
+.popup-overlayCat .popup-form {
+  background: #ffffff;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  font-family: var(--main-font);
+  font-weight: 400;
+  animation: slideIn 0.3s ease-in-out;
+}
+
+/* Header for Add Category Popup */
+.popup-overlayCat .popup-form h3 {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #4c28a0;
+  margin-bottom: 16px;
+}
+
+/* Input Field in Add Category Popup */
+.popup-overlayCat .popup-form input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: 0.3s ease;
+}
+
+.popup-overlayCat .popup-form input[type="text"]:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 6px rgba(98, 0, 234, 0.3);
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* Save Category Button */
+.popup-overlayCat .popup-form .Catbutton {
+  width: 100%;
+  background: linear-gradient(135deg, #4c28a0, #6200ea);
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(76, 40, 160, 0.3);
+}
+
+.popup-overlayCat .popup-form .Catbutton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(76, 40, 160, 0.4);
+}
+
+/* Close Button */
+.popup-overlayCat .popup-closeCat {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  color: #888888;
+  cursor: pointer;
+  transition: transform 0.3s, color 0.3s ease;
+}
+
+.popup-overlayCat .popup-closeCat:hover {
+  color: #000000;
+  transform: rotate(90deg);
+}
+
+/* Animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.labour-entry-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 9px 16px;
+  margin: 12px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.labour-entry-btn:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.labour-entry-btn .labour-name {
+  font-family: var(--secondary-font);
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+}
+
+.labour-entry-btn .tap-hold {
+  font-size: 0.85em;
+  color: #777;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Wrapper for each labour entry */
+.labour-entry-wrapper {
+  position: relative;
+  /* Needed for absolute positioning of action buttons */
+  margin: 16px 0;
+}
+
+/* Main entry button */
+.labour-entry-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 9px 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.labour-entry-btn:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Action buttons container */
+.action-buttons {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  gap: 4px;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Hidden state for buttons */
+.action-buttons .hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  /* Shrinks slightly when hidden */
+  pointer-events: none;
+  /* Prevent interaction when hidden */
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Visible state for buttons */
+.action-buttons .show {
+  opacity: 1;
+  transform: scale(1);
+  /* Restores original size */
+  pointer-events: all;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Styling for individual action buttons */
+.action-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.7s ease, order 0.9s ease;
+  /* Add order transition for sliding */
+}
+.d{
+  display: flex;
+  gap: 5px;
+
+  & img{
+    width:40px;
+    height: 40px;
+  }
+}
+
+/* Button colors */
+.action-btn.green {
+  background-color: #4caf50;
+}
+
+.action-btn.red {
+  background-color: #f44336;
+}
+
+.action-btn.orange {
+  background-color: #ff9800;
+}
+
+.action-btn.grey {
+  background-color: #9e9e9e;
+}
+
+/* Hover effect for action buttons */
+.action-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+/* Keyframe animation for bounce effect */
+@keyframes slide-bounce {
+  0% {
+      transform: translateX(0);
+  }
+  50% {
+      transform: translateX(100px); /* Slight overshoot */
+  }
+  100% {
+      transform: translateX(0);
+  }
+}
+
+/* Apply bounce animation when order changes */
+.action-btn {
+  transition: transform 0.3s ease, order 0.5s ease;
+}
+
+.action-btn.bounce {
+  animation: slide-bounce 0.5s ease; /* Trigger bounce effect */
+}
+/* Sliding form container */
+.overtime-form {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 90%; /* Adjusted to fit within the screen width */
+  max-width: 500px;
+  background-color: #ffffff;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  transition: bottom 0.5s ease;
+  z-index: 21;
+  margin: 0 auto; /* Center horizontally */
+  right: 0; /* Add for centering */
+  font-family: var(--main-font);
+  font-weight: 400;
+}
+
+/* Sliding form visible state */
+.overtime-form.visible {
+  bottom: 1%; /* Adjusted for visibility */
+}
+
+/* Handle for dragging feedback */
+.handle {
+  width: 50px;
+  height: 4px;
+  background-color: #ccc;
+  border-radius: 4px;
+  margin: 0 auto 16px auto;
+}
+
+/* Header Text */
+.overtime-form #overtimeName {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #4c28a0;
+  margin-bottom: 16px;
+}
+
+/* Input fields */
+.overtime-form input {
+  width: 90%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Styles */
+.overtime-form input:focus {
+  border-color: #6200ea;
+  box-shadow: 0 0 6px rgba(98, 0, 234, 0.3);
+  outline: none;
+  background-color: #ffffff;
+}
+
+/* Buttons */
+.overtime-form .form-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.overtime-form .save-btn,
+.overtime-form .cancel-btn {
+  flex: 1; /* Equal width for both buttons */
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.overtime-form .save-btn {
+  background: linear-gradient(135deg, #4c28a0, #6200ea);
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(76, 40, 160, 0.3);
+}
+
+.overtime-form .save-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(76, 40, 160, 0.4);
+}
+
+.overtime-form .cancel-btn {
+  background: #ccc;
+  color: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.overtime-form .cancel-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+}
+/* Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-menu {
+  position: fixed;
+  /* bottom: 0; */
+  left: 0;
+  right: 0;
+  /* width: 100%; */
+  background: linear-gradient(to top, #f5f5f5, #ffffff);
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 16px 20px;
+  transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 20;
+}
+
+.bottom-menu.visible {
+  bottom: 0; /* Slide up when visible */
+}
+
+.menu-header {
+  height: 6px;
+  width: 60px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 0 auto 16px auto;
+  cursor: grab;
+}
+
+.menu-options {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-options li {
+  padding: 14px 18px;
+  margin: 8px 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  text-align: center;
+  font-size: 1em;
+  color: #4a4a4a;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-options li:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+}
+.warning-menu {
+  position: fixed;
+  bottom: -100%; /* Hidden by default */
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, #fdfdfd, #ffffff);
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 16px;
+  transition: bottom 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1001;
+  text-align: center;
+}
+
+.warning-menu.visible {
+  bottom: 0; /* Slide up when visible */
+}
+
+.warning-header {
+  height: 6px;
+  width: 50px;
+  background-color: #ccc;
+  border-radius: 3px;
+  margin: 0 auto 12px;
+}
+
+.warning-content p {
+  font-size: 1em;
+  color: #444;
+  margin-bottom: 16px;
+}
+
+.warning-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.warning-btn {
+  padding: 12px 20px;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.warning-btn.danger {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+}
+
+.warning-btn.danger:hover {
+  background-color: #d32f2f;
+}
+
+.warning-btn.cancel {
+  background-color: #e0e0e0;
+  color: #444;
+  border: none;
+}
+
+.warning-btn.cancel:hover {
+  background-color: #c6c6c6;
+}
+/* General Styles */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+:root {
+  --header-text-color: rgb(255, 255, 255);
+  --cell-text-color: #303030;
+}
+
+/* Overlay */
+.overlay.visible {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: block;
+  z-index: 10;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/** Pop-up */
+.popup {
+  
+  display: none;
+  position: fixed;
+  /* top: 30%; */
+  left: 0;
+  right: 0;
+  bottom: -42px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  padding: 20px;
+  padding-bottom: 50px;
+  flex-direction: column;
+  height: 70%;
+  max-height: 500px;
+  overflow: hidden;
+}
+
+/* Ensure it's shown only when triggered */
+.overlay.visible + .popup {
+  display: flex;
+}
+/* Header */
+.header {
+  text-align: left;
+  align-items: center;
+}
+.detailsss{
+  font-family: var(--secondary-font);
+    display: flex;
+    gap: 5px;
+}
+
+.title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #0056b3;
+}
+
+.category {
+  font-size: 0.9em;
+  color: #666;
+  /* margin-left: 30px; */
+}
+
+.separator {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+/* Month Switcher - Keep it centered */
+.month-switcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+  width: 100%;
+  position: relative;
+}
+
+.btn-switch {
+  background: #0056b3;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-switch:hover {
+  transform: scale(1.1);
+}
+
+.current-month {
+  font-family: var(--main-font);
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* Share Button */
+.btn-share {
+  background: #0056b3;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto;
+  transition: background 0.3s ease;
+  position: absolute;
+  left: 0;
+}
+
+.btn-share:hover {
+  background: #003d80;
+}
+
+/* Spreadsheet Container */
+.spreadsheet {
+  flex-grow: 1;
+  overflow-y: scroll;
+  margin-top: 20px;
+  max-height: 350px;
+  border-radius: 10px; /* Rounded edges for the spreadsheet container */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.spreadsheet::-webkit-scrollbar {
+  display: none;
+}
+
+.row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.header .cell {
+  background-color: #0056b3;
+  color: var(--header-text-color);
+  font-family: var(--main-font);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  letter-spacing: 1px;
+  padding: 6px 0;
+}
+
+.cell {
+  flex: 1;
+  padding: 4px;
+  text-align: center;
+  font-family: var(--secondary-font);
+  font-weight: 600;
+  font-size: 0.8em;
+  color: var(--cell-text-color);
+}
+
+.row:nth-child(odd):not(.header) {
+  background-color: #f9f9f9;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideIn {
+  0% {
+      transform: translateY(100px);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0);
+      opacity: 1;
+  }
+}
+@keyframes slideUp {
+  0% {
+    transform: translateY(100%); /* Start off-screen */
+    opacity: 0; /* Fully transparent */
+  }
+  100% {
+    transform: translateY(0); /* Slide into position */
+    opacity: 1; /* Fully visible */
+  }
+}
+.popup {
+  display: flex;
+  flex-direction: column;
+  height: 67vh;
+  position: fixed;
+}
+
+.spreadsheet {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 160px);
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+
+.spreadsheet::-webkit-scrollbar {
+  display: none;
+}
+
+.spreadsheet::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px; /* Rounded edges for scrollbar thumb */
+}
+
+.spreadsheet::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff;
+}
+
+/* Fixed Calculator Section Styling */
+.calculator {
+  background-color: #ebebeb8a;
+  padding: 10px;
+  box-shadow: 0 -2px 5px rgba(116, 116, 116, 0.1);
+  position: sticky;
+  bottom: 0;
+  border-radius: 10px; /* Rounded edges for calculator */
+}
+
+.calculator .row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px;
+}
+
+.calculator .cell {
+  font-weight: bold;
+  color: #333;
+}
+
+.separator {
+  margin: 2px 0;
+  border: 0;
+  border-top: 1px solid #ddd;
+}/* Show overlay when visible */
+.overlay.visible {
+  display: block;
+  z-index: 10;
+}
+/* Reset Body Styling */
+/* body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #f4f4f9;
+font-family: "Josefin Sans", serif;
+  overflow: hidden;
+} */
+
+/* General Popup Container */
+/* Highlight for Today's Date */
+.row.highlight {
+  background: linear-gradient(to right, rgb(22 134 255 / 30%), rgb(0 123 255 / 15%), transparent); /* Gradient fading out */
+  border-left: 4px solid #007bff; /* Blue border */
+  transition: all 0.3s ease; /* Smooth transition for hover or interaction */
+}
+
+/* Fixed Header for Spreadsheet */
+.spreadsheet .row.header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Bottom Popup Styling */
+.popup1 {
+  position: fixed;
+  bottom: -100%; /* Hidden by default */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  background-color: #fff;
+  width: 80%;
+  max-width: 400px;
+  padding: 15px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 12px 12px 0 0;
+  text-align: center;
+}
+/* Date Styling */
+.popup-date {
+  font-family: var(--main-font);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Stylish HR */
+.stylish-hr {
+  border: none;
+  border-top: 2px solid #ddd;
+  margin: 8px auto;
+  width: 80%;
+}
+.advance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 14px;
+}
+
+.advance-item .delete-advance {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.advance-item .delete-advance:hover {
+  color: darkred;
+}
+/* Name and Category */
+.labour-name {
+  font-family: var(--secondary-font);
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.category {
+  font-family: var(--secondary-font);
+  font-size: 18px;
+  color: #777;
+}
+/* Action buttons container */
+/* Action buttons container */
+.action-buttons1 {
+  display: flex; /* Ensure buttons are aligned horizontally */
+  justify-content: center; /* Center-align all buttons */
+  gap: 8px; /* Spacing between buttons */
+  margin: 12px 0;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Hidden state for buttons */
+.action-buttons1 .hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Visible state for buttons */
+.action-buttons1 .show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* Individual action buttons */
+.action-btn1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.7s ease, order 0.7s ease; /* Ensure smooth order change */
+}
+
+/* Button colors */
+.action-btn1.green { background-color: #4caf50; }
+.action-btn1.red { background-color: #f44336; }
+.action-btn1.orange { background-color: #ff9800; }
+.action-btn1.grey { background-color: #9e9e9e; }
+
+/* Bounce animation */
+@keyframes slide-bounce {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.action-btn1.bounce {
+  animation: slide-bounce 0.5s ease; /* Trigger bounce effect */
+}
+/* Bottom Separator */
+.bottom-hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 12px 0;
+}
+
+/* Animated Input Field */
+.input-container {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
+.input-container input {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 11px 8px 6px 8px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-container input:focus {
+  border-color: #007bff;
+  transform: scale(1.05);
+}
+
+.input-container label {
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: #aaa;
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 8px;
+  font-family: var(--secondary-font);
+  font-size: 12px;
+  color: #007bff;
+  background-color: #fff;
+  padding: 0 4px;
+}
+
+/* Box with Input and Pay Button */
+.payment-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.pay-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--secondary-font);
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.pay-btn:hover {
+  background-color: #0056b3;
+}
+/* Popup Overlay for Bottom Popup */
+.popup-overlay1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 19; /* Slightly below the popup1 */
+  display: none; /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+/* Show the overlay */
+.popup-overlay1.visible {
+  display: block;
+  opacity: 0.5;
+}
+/* Container styling for the year switcher */
+.year-switcher {
+  position: absolute;
+  right: 0%;
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Current year display */
+.year-switcher .current-year {
+  font-weight: 550;
+  cursor: pointer;
+  display: inline-block;
+  padding: 2px 5px;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.year-switcher .current-year:hover {
+  background-color: #eaeaea;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Dropdown button */
+.year-switcher .btn-dropdown {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: -9px;
+  font-size: 16px;
+  color: #555;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open */
+.year-switcher .btn-dropdown.open {
+  transform: rotate(180deg);
+}
+
+/* Dropdown year list styling */
+.year-switcher .year-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100px;
+  margin-top: 5px;
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  display: none;
+}
+
+/* Show dropdown when visible */
+.year-switcher .year-list.visible {
+  display: block;
+}
+
+/* Year list item styling */
+.year-switcher .year-list .year-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.year-switcher .year-list .year-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Highlight the selected year */
+.year-switcher .year-list .year-item.selected {
+  font-weight: bold;
+  color: #007bff;
+  background-color: #eaf4ff;
+}
+.year-list {
+  max-height: 200px; /* Adjust height as needed */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: white;
+  position: absolute;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.year-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.year-item:hover,
+.year-item.selected {
+  background-color: #f0f0f0;
+}

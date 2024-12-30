@@ -1,0 +1,377 @@
+:root {
+    --main-font: "Ysabeau SC", serif;
+    --secondary-font: "Josefin Sans", serif;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+    /* Slightly lighter for modern look */
+}
+
+.container {
+    padding: 20px;
+    font-family: var(--secondary-font);
+}
+
+/* Site Selector Button */
+.site-selector {
+    font-family: var(--secondary-font);
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #0056b3;
+    /* Darker blue for better contrast */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.site-selector:hover {
+    background-color: #004494;
+    transform: translateY(-2px);
+    /* Indicates a button press */
+}
+
+.site-selector:active {
+    transform: translateY(0);
+}
+
+.site-selector #arrow-icon {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Popup Styles */
+.site-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.site-popup.show {
+    transform: translateY(0);
+}
+
+/* Popup Header */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.popup-header span {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover {
+    color: #dc3545;
+}
+
+/* Site List */
+#site-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.site-option:hover {
+    background-color: #f9f9f9;
+}
+
+.site-option button {
+    background: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.site-option button:hover {
+    background-color: #e03c3f;
+    transform: translateY(-1px);
+}
+
+/* Add Site Container */
+.add-site-container {
+    font-family: var(--secondary-font);
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+#new-site {
+    font-family: var(--secondary-font);
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#new-site:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+#add-site-button {
+    font-family: var(--secondary-font);
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#add-site-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+/* Save Button */
+.save-button {
+    font-family: var(--secondary-font);
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.save-button:hover {
+    background-color: #004494;
+    transform: translateY(-1px);
+}
+
+/* Delete Popup */
+.delete-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+    z-index: 20;
+}
+
+.delete-popup.show {
+    display: block;
+    animation: popup-fade 0.3s ease-in-out;
+}
+
+@keyframes popup-fade {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -40%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+/* Popup Actions */
+.popup-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.confirm-button,
+.cancel-button {
+    flex: 1;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+}
+
+.confirm-button {
+    background: #ff4d4f;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.confirm-button:hover {
+    background: #e03c3f;
+}
+
+.cancel-button {
+    background: #6c757d;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+    background: #5a6268;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 5;
+}
+
+.overlay.show {
+    display: block;
+}
+
+/* The rest of the CSS remains the same */
+.tabs {
+    display: flex;
+    border: 1px;
+    justify-content: space-between;
+    background-color: #ececec;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+
+}
+
+.tabs button {
+    background: none;
+    border: #e03c3f;
+    font-size: 18px;
+    cursor: pointer;
+    color: #325fb3;
+    transition: color 0.3s, transform 0.2s;
+    font-family: var(--main-font);
+    font-weight: bold;
+}
+
+.tabs button:hover {
+    color: #325fb3;
+    transform: translateY(-2px);
+}
+
+.date-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.date-selector div {
+    margin: 0 10px;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.date-selector div.selected {
+    color: #325fb3;
+    font-size: small;
+    font-weight: bold;
+    transform: scale(1.1);
+    /* Slight enlargement */
+}
+
+.date-selector div.selected::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    /* Slightly below the text */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    /* Underline width */
+    height: 2px;
+    background-color: #325fb3;
+    /* Matches the theme */
+    border-radius: 5px;
+    animation: slideIn 0.4s ease-in-out;
+    /* Adds a smooth animation */
+}
+
+.date-selector div:hover {
+    color: #004494;
+    transform: translateY(-2px);
+    /* Subtle lift on hover */
+}
+
+@keyframes slideIn {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 60%;
+    }
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #325fb3;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-button:hover {
+    transform: scale(1.2);
+}
